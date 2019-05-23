@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<robot name="jakebot">
+
+  <!-- Link definitions -->
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.651" />
+      <inertia
+        ixx="0.0008822304"
+        ixy="8.31584846E-06"
+        ixz="4.68935E-05"
+        iyy="0.00065021"
+        iyz="2.04976E-06"
+        izz="0.00099159" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jakebot_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jakebot_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="right_wheel_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.16281" />
+      <inertia
+        ixx="2.2535E-07"
+        ixy="5.5211E-10"
+        ixz="1.2106E-09"
+        iyy="2.2683E-07"
+        iyz="-2.1644E-09"
+        izz="1.4822E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jakebot_description/meshes/right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.025" radius ="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name= "left_wheel_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.16281" />
+      <inertia
+        ixx="2.2535E-07"
+        ixy="5.5211E-10"
+        ixz="1.2106E-09"
+        iyy="2.2683E-07"
+        iyz="-2.1644E-09"
+        izz="1.4822E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jakebot_description/meshes/left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.025" radius ="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <!--
+  <link name="swivel_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0080737" />
+      <inertia
+        ixx="4.9309E-07"
+        ixy="-1.4401E-08"
+        ixz="2.5089E-07"
+        iyy="5.9467E-07"
+        iyz="3.4884E-08"
+        izz="1.7588E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jakebot_urdf/meshes/swivel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 0.3" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jakebot_urdf/meshes/swivel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="swivel_wheel_link">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jakebot_urdf/meshes/swivel_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 0.3" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://jakebot_urdf/meshes/swivel_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <link name="lidar_base" />
+  -->
+
+  <!-- Joint definitions -->
+  <joint name="right_wheel_joint" type="continuous">
+    <origin
+      xyz="0.064063 -0.10977 -0.014095"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <origin
+      xyz="0.067477 0.1077 -0.014094"
+      rpy="-1.5707963267949 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel_link" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <!--
+  <joint
+    name="swivel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.053243 0.00083549 -0.005"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="swivel_link" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+
+  <joint
+    name="swivel_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.019053 -0.0026491 0.034"
+      rpy="-1.570796327 0 0" />
+    <parent
+      link="swivel_link" />
+    <child
+      link="swivel_wheel_link" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+
+  <joint
+    name="lidar_base_joint"
+    type="fixed">
+    <origin
+      xyz="0.041245 -0.00064721 0.046"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_base" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  -->
+  <transmission name="left_wheel_trans" type="SimpleTransmission">
+    <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="left_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="left_wheel_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+  </transmission>
+
+  <transmission name="right_wheel_trans" type="SimpleTransmission">
+    <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="right_wheel_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="right_wheel_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+  </transmission>
+
+<gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/</robotNamespace>
+  </plugin>
+</gazebo>
+
+</robot>
+

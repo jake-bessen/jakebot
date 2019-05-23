@@ -1,0 +1,38 @@
+~                  ?xml version="0.0"?> 
+<launch>
+
+    <arg name="x" default="-1.0"/>
+    <arg name="y" default="-1.0"/>
+    <arg name="z" default="-1.0"/>
+    <arg name="yaw" default="-1.0"/>
+
+   <!--  <include file="$(find jakebot_control)/launch/control.launch"/> -->
+
+    <include file="$(find jakebot_description)/launch/description.launch"/>
+<!--   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+-->
+  <node
+    name="tf_footprint_base"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="-1 0 0 0 0 0 base_link base_footprint 40" />
+
+
+    <node name="spawn_jakebot_model" pkg="gazebo_ros" output="screen" type="spawn_model"
+        args="-x $(arg x)
+              -y $(arg y)
+              -z $(arg z)
+              -yaw $(arg yaw)
+              -unpause
+              -urdf
+              -param robot_description
+              -model jakebot" />
+
+  <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" />
+
+</launch>
+
