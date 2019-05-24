@@ -3,7 +3,7 @@
 
 // ROS
 #include <ros/ros.h>
-#include <std_msgs/Float32MultiArray.h>
+#include <std_msgs/Int16MultiArray.h>
 #include <std_srvs/Empty.h>
 // ros_control
 #include <controller_manager/controller_manager.h>
@@ -22,11 +22,11 @@ public:
   JakebotInterface();
 
   void write() {
-    double diff_ang_speed_left = cmd[0];
-    double diff_ang_speed_right = cmd[1];
+    double diff_ang_speed_left = cmd[0] * 100;
+    double diff_ang_speed_right = cmd[1] * 100;
     limitDifferentialSpeed(diff_ang_speed_left, diff_ang_speed_right);
 	// Publish results
-	std_msgs::Float32MultiArray wheel_vel_msg;
+	std_msgs::Int16MultiArray wheel_vel_msg;
 	wheel_vel_msg.data.push_back(diff_ang_speed_left);
 	wheel_vel_msg.data.push_back(diff_ang_speed_right);
     wheel_vel_pub_.publish(wheel_vel_msg);
@@ -101,7 +101,7 @@ private:
     return true;
   }
 
-  void WheelAngleCallback(const std_msgs::Float32MultiArray& msg) {
+  void WheelAngleCallback(const std_msgs::Int16MultiArray& msg) {
     _wheel_angle[1] = msg.data[1];
     _wheel_angle[0] = msg.data[0];
   }
@@ -154,7 +154,7 @@ JakebotInterface::JakebotInterface()
 
 
 	// Initialize publishers and subscribers
-	wheel_vel_pub_ = nh.advertise<std_msgs::Float32MultiArray>("wheel_vel", 1);
+	wheel_vel_pub_ = nh.advertise<std_msgs::Int16MultiArray>("wheel_vel", 1);
 	wheel_angle_sub_ = nh.subscribe("wheel_angle", 1, &JakebotInterface::WheelAngleCallback, this);
 
 }
