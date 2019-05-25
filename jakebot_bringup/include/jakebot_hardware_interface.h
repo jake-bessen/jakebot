@@ -22,13 +22,13 @@ public:
   JakebotInterface();
 
   void write() {
-    double diff_ang_speed_left = cmd[0] * 100;
-    double diff_ang_speed_right = cmd[1] * 100;
+    double diff_ang_speed_left = cmd[0];
+    double diff_ang_speed_right = cmd[1];
     limitDifferentialSpeed(diff_ang_speed_left, diff_ang_speed_right);
 	// Publish results
 	std_msgs::Int16MultiArray wheel_vel_msg;
-	wheel_vel_msg.data.push_back(diff_ang_speed_left);
-	wheel_vel_msg.data.push_back(diff_ang_speed_right);
+	wheel_vel_msg.data.push_back(diff_ang_speed_left * 100);
+	wheel_vel_msg.data.push_back(diff_ang_speed_right * 100);
     wheel_vel_pub_.publish(wheel_vel_msg);
   }
 
